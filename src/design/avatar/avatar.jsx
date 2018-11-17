@@ -18,17 +18,15 @@ const AvatarWrapper = styled.div`
   }
 `;
 
-const Avatar = ({ size, imgSrc }) => {
-  return (
-    <AvatarWrapper size={size}>
-      {imgSrc ? (
-        <img src={imgSrc} alt="avatar" />
-      ) : (
-        <FontAwesomeIcon icon={faUser} color="lightgrey" />
-      )}
-    </AvatarWrapper>
-  );
-};
+const Avatar = ({ size, imgSrc }) => (
+  <AvatarWrapper size={size}>
+    {imgSrc ? (
+      <img src={imgSrc} alt="avatar" />
+    ) : (
+      <FontAwesomeIcon icon={faUser} color="lightgrey" />
+    )}
+  </AvatarWrapper>
+);
 
 Avatar.PropTypes = {
   size: PropTypes.number,
