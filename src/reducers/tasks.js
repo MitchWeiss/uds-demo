@@ -2,7 +2,7 @@ import {
   FETCH_TASKS_INITIATED,
   FETCH_TASKS_SUCCESS,
   CLAIM_TASK_SUCCESS
-} from "../sagas/tasks";
+} from "../actions";
 
 const defaultState = { loading: false, tasks: [] };
 

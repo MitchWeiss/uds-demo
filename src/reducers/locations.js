@@ -1,4 +1,4 @@
-import { FETCH_TASKS_SUCCESS } from "../sagas/tasks";
+import { FETCH_TASKS_SUCCESS } from "../actions";
 
 const tasks = (state = {}, action) => {
   switch (action.type) {

@@ -3,7 +3,7 @@ import {
   FETCH_TASK_SUCCESS,
   CLAIM_TASK_SUCCESS,
   CLAIM_TASK
-} from "../sagas/tasks";
+} from "../actions";
 
 const defaultState = { loading: false };
 

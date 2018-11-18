@@ -1,15 +1,16 @@
 import axios from "axios";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { delay } from "redux-saga";
-
-export const FETCH_TASKS_INITIATED = "FETCH_TASKS_INITIATED";
-export const FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS";
-export const FETCH_TASKS_FAILED = "FETCH_TASKS_FAILED";
-export const FETCH_TASK_INITIATED = "FETCH_TASK_INITIATED";
-export const FETCH_TASK_SUCCESS = "FETCH_TASK_SUCCESS";
-export const FETCH_TASK_FAILED = "FETCH_TASK_FAILED";
-export const CLAIM_TASK = "CLAIM_TASK";
-export const CLAIM_TASK_SUCCESS = "CLAIM_TASK_SUCCESS";
+import {
+  FETCH_TASKS_INITIATED,
+  FETCH_TASKS_SUCCESS,
+  FETCH_TASKS_FAILED,
+  FETCH_TASK_SUCCESS,
+  FETCH_TASK_FAILED,
+  FETCH_TASK_INITIATED,
+  CLAIM_TASK_SUCCESS,
+  CLAIM_TASK
+} from "../actions";
 
 export function* fetchTasks() {
   try {
