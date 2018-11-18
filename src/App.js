@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 import TaskDetails from "./tasks/task_details"
 import TaskList from './tasks/task_list';
 
