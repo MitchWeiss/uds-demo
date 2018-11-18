@@ -7,17 +7,17 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers/rootReducer";
-import createSagaMiddleware from "redux-saga";
-import rootSaga from "./sagas";
+import { createEpicMiddleware } from "redux-observable";
+import rootEpic from "./epics";
 
-const sagaMiddleware = createSagaMiddleware();
+const epicMiddleware = createEpicMiddleware();
 const composeEnhancers = composeWithDevTools({});
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  composeEnhancers(applyMiddleware(epicMiddleware))
 );
 
-sagaMiddleware.run(rootSaga);
+epicMiddleware.run(rootEpic);
 
 const app = (
   <Provider store={store}>
