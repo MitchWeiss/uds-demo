@@ -7,6 +7,7 @@ import Location from "./location";
 import DueDate from "./due_date";
 import PosterDetails from "./poster_details";
 import Details from "./details";
+import ClaimPanel from './claim_panel';
 
 const TaskTitle = styled.div`
   font-size: 20px;
@@ -48,6 +49,7 @@ const TaskDetails = ({ taskName, taskId, loading }) => (
     <DetailWrapper>
       <Details />
     </DetailWrapper>
+    <ClaimPanel />
   </div>
 );
 
