@@ -30,24 +30,25 @@ const Right = styled.div`
   flex-direction: column;
 `;
 
-const TaskDetail = ({title, label, icon}) => (
+const TaskDetail = ({title, children, icon}) => (
   <TaskDetailWrapper>
     <Left>{icon}</Left>
     <Right>
       <DetailTitle>{title}</DetailTitle>
-      <DetailLabel>{label}</DetailLabel>
+      <DetailLabel>{children}</DetailLabel>
     </Right>
   </TaskDetailWrapper>
 );
 
-TaskDetail.PropTypes = {
+TaskDetail.propTypes = {
   icon: PropTypes.element,
   title: PropTypes.string.isRequired,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
+  children: PropTypes.node,
 };
 
 TaskDetail.defaultProps = {
   icon: null,
+  children: null,
 };
 
 export default TaskDetail;

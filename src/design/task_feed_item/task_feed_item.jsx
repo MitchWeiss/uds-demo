@@ -37,9 +37,9 @@ const Status = styled.span`
   font-size: 11px;
   font-weight: 700;
   color: ${props => (props.status === "posted" ? "green" : "grey")};
-  display: flex; 
+  display: flex;
   margin-top: 0px;
-  flex-basis: 100%;  
+  flex-basis: 100%;
   justify-content: center;
   flex-direction: column;
   text-transform: uppercase;
@@ -52,19 +52,19 @@ const PropertyWrapper = styled.div`
 
 const Property = ({ icon, label }) => (
   <PropertyWrapper>
-    {<FontAwesomeIcon icon={icon} color="lightgrey" fixedWidth />}
+    <FontAwesomeIcon icon={icon} color="lightgrey" fixedWidth />
     <span>{label}</span>
   </PropertyWrapper>
 );
 
 const Left = styled.div`
-  display: flex; 
+  display: flex;
   flex-basis: 70%;
   flex-direction: column;
 `;
 
 const Right = styled.div`
-  display: flex; 
+  display: flex;
   flex-basis: 30%;
   flex-direction: column;
   align-items: flex-end;
@@ -80,25 +80,25 @@ const TaskFeedItem = ({
   date
 }) => (
   <Wrapper status={status}>
-  <Left>
-    <Title>{title}</Title>
-    {remote ? (
-      <Property icon={faGlobeAsia} label="Remote" />
-    ) : (
-      <Property icon={faMapMarkerAlt} label={location} />
-    )}
+    <Left>
+      <Title>{title}</Title>
+      {remote ? (
+        <Property icon={faGlobeAsia} label="Remote" />
+      ) : (
+        <Property icon={faMapMarkerAlt} label={location} />
+      )}
 
-    <Property icon={faUser} label={date} />
-  </Left>
-  <Right>
-    <Price>${price}</Price>
-    <Avatar size={2} imgSrc={avatarUrl} />
-  </Right>
+      <Property icon={faUser} label={date} />
+    </Left>
+    <Right>
+      <Price>${price}</Price>
+      <Avatar size={2} imgSrc={avatarUrl} />
+    </Right>
     <Status status={status}>{status}</Status>
   </Wrapper>
 );
 
-TaskFeedItem.PropTypes = {
+TaskFeedItem.propTypes = {
   title: PropTypes.string,
   location: PropTypes.string,
   remote: PropTypes.bool,

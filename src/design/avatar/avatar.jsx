@@ -28,7 +28,7 @@ const Avatar = ({ size, imgSrc }) => (
   </AvatarWrapper>
 );
 
-Avatar.PropTypes = {
+Avatar.propTypes = {
   size: PropTypes.number,
   imgSrc: PropTypes.string
 };

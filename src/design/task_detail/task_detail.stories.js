@@ -11,7 +11,8 @@ storiesOf("Task Detail", module)
   .add("Task Detail", () => (
     <TaskDetail
       title="location"
-      label="Surry Hills, NSW"
       icon={<FontAwesomeIcon icon={faMapMarkerAlt} color="lightgrey" />}
-    />
+    >
+      Surry Hills, NSW
+    </TaskDetail>
   ));
