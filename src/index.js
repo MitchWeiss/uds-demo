@@ -3,24 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./reducers/rootReducer";
-import { createEpicMiddleware } from "redux-observable";
-import rootEpic from "./epics";
+import Tasks from './stores/tasks';
+import Task from './stores/task';
+import { Provider } from 'mobx-react';
 
-const epicMiddleware = createEpicMiddleware();
-const composeEnhancers = composeWithDevTools({});
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(epicMiddleware))
-);
 
-epicMiddleware.run(rootEpic);
-
+const tasks = new Tasks();
+const task = new Task();
 const app = (
-  <Provider store={store}>
+  <Provider tasks={tasks} task={task}>
     <App />
   </Provider>
 );

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Location from "./location";
 import DueDate from "./due_date";
 import PosterDetails from "./poster_details";
 import Details from "./details";
-import ClaimPanel from './claim_panel';
+import ClaimPanel from "./claim_panel";
+import { observer, inject } from "mobx-react";
 
 const TaskTitle = styled.div`
   font-size: 20px;
@@ -23,40 +23,54 @@ const Instructions = ({ taskId, loading }) => {
     return <div>Please select a task from the left</div>;
   }
   return null;
-}
+};
 
-const Loading = ({loading}) => {
+const Loading = ({ loading }) => {
   if (loading) {
-    return <FontAwesomeIcon size="2x" icon={faSpinner} color="lightgrey" fixedWidth spin />
+    return (
+      <FontAwesomeIcon
+        size="2x"
+        icon={faSpinner}
+        color="lightgrey"
+        fixedWidth
+        spin
+      />
+    );
   }
   return null;
-}
-
+};
 const TaskDetails = ({ taskName, taskId, loading }) => (
   <div>
     <Instructions taskId={taskId} loading={loading} />
     {taskName && <TaskTitle>{taskName}</TaskTitle>}
     <Loading loading={loading} />
     <DetailWrapper>
-      <PosterDetails />
+      {/* <PosterDetails /> */}
     </DetailWrapper>
     <DetailWrapper>
-      <Location />
+      {/* <Location /> */}
     </DetailWrapper>
     <DetailWrapper>
-      <DueDate />
+      {/* <DueDate /> */}
     </DetailWrapper>
     <DetailWrapper>
-      <Details />
+      {/* <Details /> */}
     </DetailWrapper>
-    <ClaimPanel />
+    {/* <ClaimPanel /> */}
   </div>
 );
 
-const mapStateToProps = state => ({
-  taskId: state.task.id,
-  taskName: state.task.name,
-  loading: state.task.loading
-});
 
-export default connect(mapStateToProps)(TaskDetails);
+export default inject(stores => ({
+  taskId: stores.task.task.id,
+  taskName: stores.task.task.name,
+  loading: stores.task.loading
+}))(observer(TaskDetails))
+
+// const mapStateToProps = state => ({
+//   taskId: state.task.id,
+//   taskName: state.task.name,
+//   loading: state.task.loading
+// });
+
+// export default connect(mapStateToProps)(TaskDetails);
