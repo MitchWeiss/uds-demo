@@ -45,32 +45,23 @@ const TaskDetails = ({ taskName, taskId, loading }) => (
     {taskName && <TaskTitle>{taskName}</TaskTitle>}
     <Loading loading={loading} />
     <DetailWrapper>
-      {/* <PosterDetails /> */}
+      <PosterDetails />
     </DetailWrapper>
     <DetailWrapper>
-      {/* <Location /> */}
+      <Location />
     </DetailWrapper>
     <DetailWrapper>
-      {/* <DueDate /> */}
+      <DueDate />
     </DetailWrapper>
     <DetailWrapper>
-      {/* <Details /> */}
+      <Details />
     </DetailWrapper>
     {/* <ClaimPanel /> */}
   </div>
 );
 
-
 export default inject(stores => ({
   taskId: stores.task.task.id,
   taskName: stores.task.task.name,
   loading: stores.task.loading
-}))(observer(TaskDetails))
-
-// const mapStateToProps = state => ({
-//   taskId: state.task.id,
-//   taskName: state.task.name,
-//   loading: state.task.loading
-// });
-
-// export default connect(mapStateToProps)(TaskDetails);
+}))(observer(TaskDetails));

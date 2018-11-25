@@ -1,8 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import TaskDetail from "../design/task_detail/task_detail";
+import { observer, inject } from "mobx-react";
 
 const Details = ({ details }) => {
   if (details) {
@@ -20,8 +20,6 @@ const Details = ({ details }) => {
   return null;
 };
 
-const mapStateToProps = state => ({
-  details: state.task.details,
-});
-
-export default connect(mapStateToProps)(Details);
+export default inject(stores => ({
+  details: stores.task.task.details
+}))(observer(Details));

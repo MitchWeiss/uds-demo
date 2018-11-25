@@ -16,7 +16,7 @@ const TaskFeedItemWrapper = styled.div`
     locations: stores.tasks.locations,
     profiles: stores.tasks.profiles,
     fetchTasks: stores.tasks.fetchTasks,
-    fetchTask: stores.task.fetchTask,
+    fetchTask: stores.task.fetchTask
   };
 })
 @observer
@@ -69,18 +69,3 @@ class TaskList extends Component {
 }
 
 export default TaskList;
-// const mapStateToProps = state => ({
-//   loading: state.tasks.loading,
-//   tasks: state.tasks.tasks,
-//   locations: state.locations.locations,
-//   profiles: state.profiles.profiles
-// });
-// const mapDispatchToProps = dispatch => ({
-//   fetchTasks: () => dispatch(fetchTasks()),
-//   fetchTask: task => dispatch(fetchTask(task))
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(TaskList);

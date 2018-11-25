@@ -1,7 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import Avatar from "../design/avatar/avatar";
 import TaskDetail from "../design/task_detail/task_detail";
+import { observer, inject } from "mobx-react";
 
 const PosterDetails = ({ poster }) => {
   if (poster) {
@@ -9,16 +9,16 @@ const PosterDetails = ({ poster }) => {
       <TaskDetail
         icon={<Avatar size={2} imgSrc={poster.avatar.medium.url} />}
         title="Poster"
-      >{poster.abbreviated_name}</TaskDetail>
+      >
+        {poster.abbreviated_name}
+      </TaskDetail>
     );
   }
   return null;
 };
 
-const mapStateToProps = state => ({
-  poster: state.profiles.profiles.find(
-    profile => profile.id === state.task.sender_id
+export default inject(stores => ({
+  poster: stores.tasks.profiles.find(
+    profile => profile.id === stores.task.task.sender_id
   )
-});
-
-export default connect(mapStateToProps)(PosterDetails);
+}))(observer(PosterDetails));
