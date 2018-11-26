@@ -1,29 +1,46 @@
-import { observable, action, flow } from "mobx";
+import { observable, action, flow, computed } from "mobx";
 
 const promiseTimeout = time => new Promise(res => setTimeout(res, time));
 
 export default class Task {
   @observable loading = false;
+  @observable attemptingClaim = false;
   @observable task = {};
 
-  @action fetchTask = task => {
-    // if (this.pendingFetch) {
-    //   this.pendingFetch.cancel();
-    //   this.pendingFetch = null;
-    // }
-
-    this.loading = true;
-    this.task = { id: task.id, name: task.name };
-    promiseTimeout(1000).then(() => {
+  doFetchTask = flow(function*(task) {
+    try {
+      yield promiseTimeout(1000);
       this.task = task;
       this.loading = false;
-    });
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
-    // this.pendingFetch = flow(function*() {
-    //   yield promiseTimeout(1000);
-    //   this.task = task;
-    //   this.loading = false;
-    //   this.pendingFetch = null;
-    // });
+  @action fetchTask = task => {
+    if (this.pendingFetch) {
+      this.pendingFetch.catch(() => {});
+      this.pendingFetch.cancel();
+      this.pendingFetch = null;
+    }
+    this.loading = true;
+    this.task = { id: task.id, name: task.name };
+    this.pendingFetch = this.doFetchTask(task);
+  };
+
+  @computed get claimable() {
+    return this.task.state === "posted";
+  }
+
+  @computed get formattedPrice() {
+    return this.task.amount / 100;
+  }
+
+  @action claimTask = taskId => {
+    this.attemptingClaim = true;
+    promiseTimeout(1000).then(() => {
+      this.attemptingClaim = false;
+      this.task.state = "assigned";
+    });
   };
 }
