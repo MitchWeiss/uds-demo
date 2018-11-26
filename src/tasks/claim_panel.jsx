@@ -1,7 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
-import { claimTask } from "../actions";
+import { observer, inject } from "mobx-react";
 
 const AmountWrapper = styled.span`
   font-size: 20px;
@@ -20,7 +19,7 @@ const ClaimPanel = ({
     : claimable
     ? "Claim now!"
     : "It's been claimed!";
-    
+
   if (amount) {
     return (
       <div>
@@ -35,18 +34,10 @@ const ClaimPanel = ({
   return null;
 };
 
-const mapStateToProps = state => ({
-  taskId: state.task.id,
-  amount: state.task.amount / 100,
-  claimable: state.task.state === "posted",
-  attemptingClaim: !!state.task.attemptingClaim
-});
-
-const mapDispatchToProps = dispatch => ({
-  onClick: taskId => dispatch(claimTask(taskId))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ClaimPanel);
+export default inject(stores => ({
+  taskId: stores.task.task.id,
+  amount: stores.task.formattedPrice,
+  claimable: stores.task.claimable,
+  onClick: stores.task.claimTask,
+  attemptingClaim: stores.task.attemptingClaim
+}))(observer(ClaimPanel));

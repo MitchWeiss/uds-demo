@@ -56,7 +56,7 @@ const TaskDetails = ({ taskName, taskId, loading }) => (
     <DetailWrapper>
       <Details />
     </DetailWrapper>
-    {/* <ClaimPanel /> */}
+    <ClaimPanel />
   </div>
 );
 
