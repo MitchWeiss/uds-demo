@@ -7,9 +7,15 @@ export default class Task {
   @observable attemptingClaim = false;
   @observable task = {};
 
+  // nit: I'd declare pendingFetch up her (not an observable).
+
   doFetchTask = flow(function*(task) {
     try {
       yield promiseTimeout(1000);
+
+      // Seems like you are just testing out `flow` here.
+      // I think it makes more sense for fetching tasks to be a part of the `tasks`
+      // store instead.
       this.task = task;
       this.loading = false;
     } catch (e) {

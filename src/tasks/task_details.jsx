@@ -45,6 +45,11 @@ const TaskDetails = ({ taskName, taskId, loading }) => (
     {taskName && <TaskTitle>{taskName}</TaskTitle>}
     <Loading loading={loading} />
     <DetailWrapper>
+      {/*
+        Connecting `PosterDetails` (to stores) makes `TaskDetails`, much harder to test
+        in isolation as there are more things to mock/fake.
+        How about `<PosterDetails poster={...}`?
+      */}
       <PosterDetails />
     </DetailWrapper>
     <DetailWrapper>

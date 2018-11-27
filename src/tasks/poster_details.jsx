@@ -17,6 +17,10 @@ const PosterDetails = ({ poster }) => {
   return null;
 };
 
+// From https://github.com/mobxjs/mobx-react
+// N.B. note that in this specific case neither NameDisplayer nor UserNameDisplayer
+// needs to be decorated with observer,
+// since the observable dereferencing is done in the mapper function
 export default inject(stores => ({
   poster: stores.tasks.profiles.find(
     profile => profile.id === stores.task.task.sender_id

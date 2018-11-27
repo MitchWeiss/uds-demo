@@ -7,6 +7,9 @@ const AmountWrapper = styled.span`
   padding-right: 20px;
 `;
 
+// I'd just put a Task object as prop here for testability and readability.
+// The beauty of mobx is that it will/can take care of the minimum renders for you
+// base on what you need in render().
 const ClaimPanel = ({
   amount,
   claimable,

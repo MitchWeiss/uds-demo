@@ -44,6 +44,9 @@ const Location = ({ remote, location }) => {
   return null;
 };
 
+// nit: once connected, the component is no longer just a "location"
+// it's the location of something very spicific, e.g., the selected task here,
+// so it should be named accordingly.
 export default inject(stores => ({
   remote: stores.task.task.online_or_phone,
   location:
